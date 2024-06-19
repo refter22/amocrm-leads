@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leads</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .search-container {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Leads</h1>
+
+    <div class="search-container">
+        <form action="/" method="get">
+            <input type="text" name="query" placeholder="Search..." value="<%= query %>" />
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Бюджет</th>
+                <th>Статус</th>
+                <th>Дата Создания</th>
+                <th>Ответственный</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% leads.forEach(function(lead) { %>
+                <tr>
+                    <td><%= lead.name %></td>
+                    <td><%= lead.budget %></td>
+                    <td><%= lead.status %></td>
+                    <td><%= new Date(lead.created_at * 1000).toLocaleDateString() %></td>
+                    <td><%= lead.responsible_user %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>
